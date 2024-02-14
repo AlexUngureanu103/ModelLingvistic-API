@@ -6,6 +6,8 @@ tokenizer = AutoTokenizer.from_pretrained(checkpoint)
 model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 
 translate_controller = Blueprint('translate_controller', __name__)
+
+
 @translate_controller.route('/translate-ro', methods=['Post'])
 def translate_to_ro():
     """
@@ -53,6 +55,7 @@ def translate_to_fr():
     prefix = "Translate English to French: "
     return translate(prefix, prompt)
 
+
 @translate_controller.route('/translate', methods=['GET'])
 def test():
     """
@@ -65,7 +68,6 @@ def test():
         description: Successful operation
     """
     return jsonify({"output": "Hello World"})
-
 
 
 def translate(prefix, prompt):

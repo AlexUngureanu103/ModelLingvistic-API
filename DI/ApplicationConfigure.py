@@ -1,20 +1,11 @@
-# from injector import Injector, inject, Module, provider, singleton
-# from config import DB_CONNECTION_STRING
-# from Repositoes.UserRepository import UserRepository
-# from Services.AccountService import AccountService
-#
-#
-# class AppModule(Module):
-#     @singleton
-#     @provider
-#     def provide_user_repository(self) -> UserRepository:
-#         return UserRepository(DB_CONNECTION_STRING)
-#
-#     @singleton
-#     @provider
-#     @inject
-#     def provide_account_service(self, user_repository: UserRepository) -> AccountService:
-#         return AccountService(user_repository)
-#
-#
-# injector = Injector(AppModule())
+from injector import Binder
+
+from Repositories.TranslationRepository import TranslationRepository
+from Repositories.UserRepository import UserRepository
+from Services.AccountService import AccountService
+
+
+def configure(binder: Binder) -> None:
+    binder.bind(TranslationRepository, to=TranslationRepository)
+    binder.bind(UserRepository, to=UserRepository)
+    binder.bind(AccountService, to=AccountService)

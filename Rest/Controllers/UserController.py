@@ -1,13 +1,15 @@
+import injector
 from flask import Blueprint, request, jsonify
 
-# from DI.ApplicationConfigure import injector
+from DI.ApplicationConfigure import configure
 from Models.User import CreateOrUpdateUser, User
 from Repositories.UserRepository import UserRepository
 from Services.AccountService import AccountService
 from config import DB_CONNECTION_STRING
 
 user_controller = Blueprint('user_controller', __name__)
-user_repository = UserRepository(DB_CONNECTION_STRING)
+
+user_repository = UserRepository()
 accountService = AccountService(user_repository)
 
 

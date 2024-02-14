@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d797342f-4a08-414e-a725-67a90ba8685a" name="Changes" comment="translate model and repo">
+    <list default="true" id="d797342f-4a08-414e-a725-67a90ba8685a" name="Changes" comment="fix for TranslateController.py and added a dummy endpoit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DI/ApplicationConfigure.py" beforeDir="false" afterPath="$PROJECT_DIR$/DI/ApplicationConfigure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/TranslationRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/TranslationRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rest/Controllers/TranslateController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rest/Controllers/TranslateController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rest/restAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rest/restAPI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rest/Controllers/UserController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rest/Controllers/UserController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,21 +42,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.restAPI.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Develop",
-    "last_opened_file_path": "C:/DEV/Model_Lingvistic_API",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.restAPI.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Develop&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/DEV/Model_Lingvistic_API&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\DEV\Model_Lingvistic_API" />
@@ -108,6 +113,7 @@
       <option name="presentableId" value="Default" />
       <updated>1707925166164</updated>
       <workItem from="1707925168304" duration="621000" />
+      <workItem from="1707941176759" duration="641000" />
     </task>
     <task id="LOCAL-00001" summary="added requirements.txt file to list every dependency">
       <option name="closed" value="true" />
@@ -125,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707934179248</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix for TranslateController.py and added a dummy endpoit">
+      <option name="closed" value="true" />
+      <created>1707934975360</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1707934975360</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,9 +148,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added requirements.txt file to list every dependency" />
     <MESSAGE value="translate model and repo" />
-    <option name="LAST_COMMIT_MESSAGE" value="translate model and repo" />
+    <MESSAGE value="fix for TranslateController.py and added a dummy endpoit" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix for TranslateController.py and added a dummy endpoit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Model_Lingvistic_API$restAPI.coverage" NAME="restAPI Coverage Results" MODIFIED="1707934131987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Rest" />
+    <SUITE FILE_PATH="coverage/Model_Lingvistic_API$restAPI.coverage" NAME="restAPI Coverage Results" MODIFIED="1707937256423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Rest" />
   </component>
 </project>

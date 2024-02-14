@@ -1,12 +1,12 @@
 import uuid
 from pymongo import MongoClient
 from Models import Translation
-from config import Environment, TranslationCollection
+from config import Environment, TranslationCollection, DB_CONNECTION_STRING
 
 
 class TranslationRepository:
-    def __init__(self, connection_string):
-        self.client = MongoClient(connection_string)
+    def __init__(self):
+        self.client = MongoClient(DB_CONNECTION_STRING)
         self.db = self.client[Environment]
         self.collection = self.db[TranslationCollection]
 
