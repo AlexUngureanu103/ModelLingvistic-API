@@ -1,4 +1,9 @@
 from flask import Flask, request, jsonify, Blueprint
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+
+checkpoint = "t5-small"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 
 translate_controller = Blueprint('translate_controller', __name__)
 @translate_controller.route('/translate-ro', methods=['Post'])
@@ -47,6 +52,20 @@ def translate_to_fr():
 
     prefix = "Translate English to French: "
     return translate(prefix, prompt)
+
+@translate_controller.route('/translate', methods=['GET'])
+def test():
+    """
+    Test
+    ---
+    tags:
+      - Translate
+    responses:
+      200:
+        description: Successful operation
+    """
+    return jsonify({"output": "Hello World"})
+
 
 
 def translate(prefix, prompt):
