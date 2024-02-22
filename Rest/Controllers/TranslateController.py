@@ -21,6 +21,12 @@ def translate_to_ro():
         required: true
         type: string
         description: The prompt string to process.
+        schema:
+          type: object
+          properties:
+            prompt:
+              type: string
+              example: "Translate this text."
     responses:
       200:
         description: Successful operation
@@ -45,6 +51,12 @@ def translate_to_fr():
         required: true
         type: string
         description: The prompt string to process.
+        schema:
+          type: object
+          properties:
+            prompt:
+              type: string
+              example: "Translate this text."
     responses:
       200:
         description: Successful operation
@@ -56,18 +68,34 @@ def translate_to_fr():
     return translate(prefix, prompt)
 
 
-@translate_controller.route('/translate', methods=['GET'])
+@translate_controller.route('/summarise', methods=['Post'])
 def test():
     """
-    Test
+    Summarise a given prompt
     ---
     tags:
       - Translate
+    parameters:
+      - name: prompt
+        in: body
+        required: true
+        type: string
+        description: The prompt string to process.
+        schema:
+          type: object
+          properties:
+            prompt:
+              type: string
+              example: "Summarise this text."
     responses:
       200:
         description: Successful operation
     """
-    return jsonify({"output": "Hello World"})
+    print(request.json)
+    prompt = request.json.get('prompt')  # Accessing prompt from request body
+
+    prefix = "summarize: "
+    return translate(prefix, prompt)
 
 
 def translate(prefix, prompt):
