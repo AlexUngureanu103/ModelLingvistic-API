@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d797342f-4a08-414e-a725-67a90ba8685a" name="Changes" comment="fix for TranslateController.py and added a dummy endpoit">
+      <change afterPath="$PROJECT_DIR$/Models/TranslatedEntry.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/TranslatedEntryRepository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rest/Controllers/TranslatedEntryController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/TranslatedEntryService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DI/ApplicationConfigure.py" beforeDir="false" afterPath="$PROJECT_DIR$/DI/ApplicationConfigure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Translation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Translation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/TranslationRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/TranslationRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rest/Controllers/TranslateController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rest/Controllers/TranslateController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rest/Controllers/UserController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rest/Controllers/UserController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rest/restAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rest/restAPI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/AccountService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/AccountService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +36,13 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -42,21 +52,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.restAPI.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Develop&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/DEV/Model_Lingvistic_API&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.restAPI.executor": "Debug",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Develop",
+    "last_opened_file_path": "C:/DEV/Model_Lingvistic_API",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\DEV\Model_Lingvistic_API" />
@@ -114,6 +125,17 @@
       <updated>1707925166164</updated>
       <workItem from="1707925168304" duration="621000" />
       <workItem from="1707941176759" duration="641000" />
+      <workItem from="1709879506179" duration="489000" />
+      <workItem from="1710071938076" duration="604000" />
+      <workItem from="1710101366257" duration="2000" />
+      <workItem from="1710779694800" duration="3000" />
+      <workItem from="1710780026312" duration="616000" />
+      <workItem from="1715869882838" duration="14000" />
+      <workItem from="1715869909785" duration="4793000" />
+      <workItem from="1715965109137" duration="71000" />
+      <workItem from="1715965213283" duration="7000" />
+      <workItem from="1715965549976" duration="11000" />
+      <workItem from="1716640142420" duration="3973000" />
     </task>
     <task id="LOCAL-00001" summary="added requirements.txt file to list every dependency">
       <option name="closed" value="true" />
@@ -152,6 +174,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix for TranslateController.py and added a dummy endpoit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Model_Lingvistic_API$restAPI.coverage" NAME="restAPI Coverage Results" MODIFIED="1707937256423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Rest" />
+    <SUITE FILE_PATH="coverage/Model_Lingvistic_API$test.coverage" NAME="test Coverage Results" MODIFIED="1715871648266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Model_Lingvistic_API$restAPI.coverage" NAME="restAPI Coverage Results" MODIFIED="1716643961298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Rest" />
   </component>
 </project>

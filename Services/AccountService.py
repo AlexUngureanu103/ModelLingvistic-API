@@ -35,7 +35,7 @@ class AccountService:
         self.userRepository.delete_user(user_id)
         return self.requestStatus
 
-    def update_account(self, user_id, user: User):
+    def update_account(self, user_id, user: CreateOrUpdateUser):
         self._reset_request_status()
         if not self.userRepository.get_user(user_id):
             self.requestStatus.add_error("error", "User does not exist")

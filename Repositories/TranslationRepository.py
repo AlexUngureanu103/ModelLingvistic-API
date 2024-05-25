@@ -18,12 +18,12 @@ class TranslationRepository:
         result = self.collection.insert_one(translation.__dict__)
         return result.inserted_id
 
-    def get_translation(self, translation_id) -> Translation:
+    def get_translation(self, translation_id: str) -> Translation:
         translation = self.collection.find_one({'_id': translation_id})
         return translation
 
-    def update_translation(self, translation_id, translation: Translation):
+    def update_translation(self, translation_id: str, translation: Translation):
         self.collection.update_one({'_id': translation_id}, {"$set": translation.__dict__})
 
-    def delete_translation(self, translation_id):
+    def delete_translation(self, translation_id: str):
         self.collection.delete_one({'_id': translation_id})

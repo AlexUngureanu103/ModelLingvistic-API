@@ -2,3 +2,4 @@ DB_CONNECTION_STRING = "mongodb+srv://LLMDB:8cC2kYJRZd10slp0@modellingvistic.u7o
 Environment = "Dev"
 AccountCollection = "AccountsCollection"
 TranslationCollection = "TranslationsCollection"
+TranslatedEntryCollection = "TranslatedEntriesCollection"
