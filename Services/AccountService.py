@@ -24,6 +24,8 @@ class AccountService:
 
         user.password = hash_password(user.password)
         self.userRepository.create_user(user)
+
+        self.requestStatus.add_data("user_id", user._id)
         return self.requestStatus
 
     def delete_account(self, user_id):
@@ -60,12 +62,13 @@ class AccountService:
 
         user_from_db = self.userRepository.get_user_by_email(user.email)
 
-        if not user:
+        if user_from_db is None:
             self.requestStatus.add_error("error", "User does not exist")
             return self.requestStatus
 
         password_ok = verify_password(user_from_db["password"], user.password)
         if password_ok:
+            self.requestStatus.add_data("user_id", user_from_db["_id"])
             return self.requestStatus
 
         self.requestStatus.add_error("error", "Password is incorrect")

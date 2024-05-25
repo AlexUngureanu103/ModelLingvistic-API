@@ -62,7 +62,7 @@ def add_translated_entry():
     status = tralated_entry_service.add_translated_entry(translated_entry)
 
     if status.is_empty():
-        return jsonify("Translated entry added successfully")
+        return jsonify(translated_entry.to_dict())
     else:
         return jsonify(status.errors), 400
 
@@ -193,7 +193,7 @@ def get_all_translated_entries_by_user(user_id):
     return jsonify(translated_entries)
 
 
-@translated_entry_controller.route('/translated-entry/<entry_id>', methods=['GET'])
+@translated_entry_controller.route('/translated-entry/single/<entry_id>', methods=['GET'])
 def get_translated_entry(entry_id):
     """
     Get a translated entry

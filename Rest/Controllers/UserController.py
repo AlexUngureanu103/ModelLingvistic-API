@@ -45,7 +45,7 @@ def register():
     status = accountService.register(user)
 
     if status.is_empty():
-        return jsonify("User registered successfully")
+        return jsonify(status.data)
     else:
         return jsonify(status.errors), 400
 
@@ -81,7 +81,7 @@ def login():
     status = accountService.login(user)
 
     if status.is_empty():
-        return jsonify("User Login successfully")
+        return jsonify(status.data)
     else:
         return jsonify(status.errors), 401
 
