@@ -1,22 +1,20 @@
-import injector
 from flask import Blueprint, request, jsonify
 
-from DI.ApplicationConfigure import configure
-from Models.TranslatedEntry import TranslatedEntry, CreateOrUpdateTranslatedEntry
-from Models.User import CreateOrUpdateUser, User
+from Models.TranslatedEntry import CreateOrUpdateTranslatedEntry
 from Repositories.UserRepository import UserRepository
 from Repositories.TranslatedEntryRepository import TranslatedEntryRepository
+from Services.AuthorizationService import token_required
 from Services.TranslatedEntryService import TranslatedEntryService
-from config import DB_CONNECTION_STRING
 
 translated_entry_controller = Blueprint('translated_entry_controller', __name__)
 
 translated_entry_repository = TranslatedEntryRepository()
 user_repository = UserRepository()
-tralated_entry_service = TranslatedEntryService(translated_entry_repository, user_repository)
+translated_entry_service = TranslatedEntryService(translated_entry_repository, user_repository)
 
 
 @translated_entry_controller.route('/translated-entry', methods=['POST'])
+@token_required
 def add_translated_entry():
     """
     Add a translated entry
@@ -59,7 +57,7 @@ def add_translated_entry():
         prompt=translated_entry_data['prompt'],
         translated_prompt=translated_entry_data['translation'])
 
-    status = tralated_entry_service.add_translated_entry(translated_entry)
+    status = translated_entry_service.add_translated_entry(translated_entry)
 
     if status.is_empty():
         return jsonify(translated_entry.to_dict())
@@ -68,6 +66,7 @@ def add_translated_entry():
 
 
 @translated_entry_controller.route('/translated-entry', methods=['DELETE'])
+@token_required
 def delete_translated_entry():
     """
     Delete a translated entry
@@ -91,7 +90,7 @@ def delete_translated_entry():
         description: Successful operation
     """
     entry_id = request.json.get('id')
-    status = tralated_entry_service.delete_translated_entry(entry_id)
+    status = translated_entry_service.delete_translated_entry(entry_id)
 
     if status.is_empty():
         return jsonify("Translated entry deleted successfully")
@@ -100,6 +99,7 @@ def delete_translated_entry():
 
 
 @translated_entry_controller.route('/translated-entry', methods=['PUT'])
+@token_required
 def update_translated_entry():
     """
     Update a translated entry
@@ -145,7 +145,7 @@ def update_translated_entry():
         prompt=translated_entry_data['prompt'],
         translated_prompt=translated_entry_data['translation'])
 
-    status = tralated_entry_service.update_translated_entry(translated_entry_data['entry_id'], translated_entry)
+    status = translated_entry_service.update_translated_entry(translated_entry_data['entry_id'], translated_entry)
 
     if status.is_empty():
         return jsonify("Translated entry updated successfully")
@@ -154,23 +154,8 @@ def update_translated_entry():
 
 
 @translated_entry_controller.route('/translated-entry', methods=['GET'])
-def get_all_translated_entries():
-    """
-    Get all translated entries
-    ---
-    tags:
-      - Translated Entry
-    responses:
-      200:
-        description: Successful operation
-    """
-    translated_entries = tralated_entry_service.get_all_translated_entries()
-
-    return jsonify(translated_entries)
-
-
-@translated_entry_controller.route('/translated-entry/<user_id>', methods=['GET'])
-def get_all_translated_entries_by_user(user_id):
+@token_required
+def get_all_translated_entries_by_user(current_user: str):
     """
     Get all translated entries by user
     ---
@@ -188,13 +173,14 @@ def get_all_translated_entries_by_user(user_id):
       404:
         description: User not found
     """
-    translated_entries = tralated_entry_service.get_all_translated_entries_by_user(user_id)
+    translated_entries = translated_entry_service.get_all_translated_entries_by_user(current_user)
 
     return jsonify(translated_entries)
 
 
 @translated_entry_controller.route('/translated-entry/single/<entry_id>', methods=['GET'])
-def get_translated_entry(entry_id):
+@token_required
+def get_translated_entry(entry_id: str):
     """
     Get a translated entry
     ---
@@ -212,6 +198,6 @@ def get_translated_entry(entry_id):
       404:
         description: User not found
     """
-    translated_entry = tralated_entry_service.get_translated_entry(entry_id)
+    translated_entry = translated_entry_service.get_translated_entry(entry_id)
 
     return jsonify(translated_entry)

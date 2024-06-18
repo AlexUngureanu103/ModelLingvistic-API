@@ -10,3 +10,7 @@ class CreateOrUpdateUser:
         self.email = email
         self.password = password
         self._id = None
+
+    @property
+    def id(self):
+        return self._id

@@ -5,6 +5,7 @@ from DI.ApplicationConfigure import configure
 from Models.User import CreateOrUpdateUser, User
 from Repositories.UserRepository import UserRepository
 from Services.AccountService import AccountService
+from Services.AuthorizationService import token_required
 from config import DB_CONNECTION_STRING
 
 user_controller = Blueprint('user_controller', __name__)
@@ -87,6 +88,7 @@ def login():
 
 
 @user_controller.route('/user/delete', methods=['DELETE'])
+@token_required
 def delete():
     """
     Delete a user
@@ -121,6 +123,7 @@ def delete():
 
 
 @user_controller.route('/user/update', methods=['PUT'])
+@token_required
 def update():
     """
     Update a user
