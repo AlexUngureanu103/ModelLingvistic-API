@@ -1,26 +1,27 @@
 from flask import Blueprint, request, jsonify
 
 from Models.TranslationEntry import CreateOrUpdateTranslationEntry, TranslationEntry
-from Repositories.HistoryTranslationEntryRepository import HistoryTranslationEntryRepository
+from Repositories.FavoriteTranslationEntryRepository import FavoriteTranslationEntryRepository
 from Repositories.UserRepository import UserRepository
 from Services.AuthorizationService import token_required
-from Services.TranslatedEntryService import TranslatedEntryService
+from Services.FavoriteTranslationEntryService import FavoriteTranslationEntryService
 
-history_translation_entry_controller = Blueprint('translated_entry_controller', __name__)
+favorite_translation_entry_controller = Blueprint('favorite_translated_entry_controller', __name__)
 
-history_translation_entry_repository = HistoryTranslationEntryRepository()
+favorite_translation_entry_repository = FavoriteTranslationEntryRepository()
 user_repository = UserRepository()
-history_translation_entry_service = TranslatedEntryService(history_translation_entry_repository, user_repository)
+favorite_translation_entry_service = FavoriteTranslationEntryService(favorite_translation_entry_repository,
+                                                                     user_repository)
 
 
-@history_translation_entry_controller.route('/history-translated-entry', methods=['POST'])
+@favorite_translation_entry_controller.route('/favorite-translated-entry', methods=['POST'])
 @token_required
 def add_translated_entry(current_user: str):
     """
-    Add a history translated entry
+    Add a favorite translated entry
     ---
     tags:
-      - History
+      - Favorite
     parameters:
       - name: body
         in: body
@@ -59,7 +60,7 @@ def add_translated_entry(current_user: str):
         locale_id=translated_entry_data['locale_id']
     )
 
-    status = history_translation_entry_service.add_translated_entry(translated_entry)
+    status = favorite_translation_entry_service.add_translated_entry(translated_entry)
 
     if status.is_empty():
         return jsonify(translated_entry.to_dict())
@@ -67,14 +68,14 @@ def add_translated_entry(current_user: str):
         return jsonify(status.errors), 400
 
 
-@history_translation_entry_controller.route('/history-translated-entry', methods=['PUT'])
+@favorite_translation_entry_controller.route('/favorite-translated-entry', methods=['PUT'])
 @token_required
 def update_translated_entry(current_user: str):
     """
-    Update history translated entries
+    Update favorite translated entries
     ---
     tags:
-      - History
+      - Favorite
     parameters:
       - name: body
         in: body
@@ -123,7 +124,7 @@ def update_translated_entry(current_user: str):
         )
         translated_entries.append(translated_entry)
 
-    status = history_translation_entry_service.update_translated_entry(current_user, translated_entries)
+    status = favorite_translation_entry_service.update_translated_entry(current_user, translated_entries)
 
     if status.is_empty():
         return jsonify("Translated entries updated successfully")
@@ -131,20 +132,20 @@ def update_translated_entry(current_user: str):
         return jsonify(status.errors), 400
 
 
-@history_translation_entry_controller.route('/history-translated-entry', methods=['GET'])
+@favorite_translation_entry_controller.route('/favorite-translated-entry', methods=['GET'])
 @token_required
 def get_all_translated_entries_by_user(current_user: str):
     """
-    Get all history translated entries by user
+    Get all favorite translated entries by user
     ---
     tags:
-      - History
+      - Favorite
     responses:
       200:
         description: Successful operation
       404:
         description: User not found
     """
-    translated_entries = history_translation_entry_service.get_all_translated_entries_by_user(current_user)
+    translated_entries = favorite_translation_entry_service.get_all_translated_entries_by_user(current_user)
 
     return jsonify(translated_entries)

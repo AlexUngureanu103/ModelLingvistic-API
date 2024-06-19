@@ -1,4 +1,4 @@
-class HistoryTranslationEntry:
+class TranslationEntry:
     def __init__(self, _id: str, prompt: str, prompt_language: str, translated_prompt: str, translated_language: str,
                  user_id: str, locale_id: str):
         self.user_id = user_id
@@ -21,7 +21,7 @@ class HistoryTranslationEntry:
         }
 
 
-class CreateOrUpdateHistoryTranslationEntry:
+class CreateOrUpdateTranslationEntry:
     def __init__(self, prompt: str, prompt_language: str, translated_prompt: str, translated_language: str,
                  user_id: str, locale_id: str):
         self.user_id = user_id

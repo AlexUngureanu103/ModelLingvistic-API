@@ -1,14 +1,14 @@
 import uuid
 from pymongo import MongoClient
 from Models.TranslationEntry import TranslationEntry
-from config import Environment, DB_CONNECTION_STRING, HistoryTranslatedEntryCollection
+from config import Environment, DB_CONNECTION_STRING, FavoriteTranslatedEntryCollection
 
 
-class HistoryTranslationEntryRepository:
+class FavoriteTranslationEntryRepository:
     def __init__(self):
         self.client = MongoClient(DB_CONNECTION_STRING)
         self.db = self.client[Environment]
-        self.collection = self.db[HistoryTranslatedEntryCollection]
+        self.collection = self.db[FavoriteTranslatedEntryCollection]
 
     def add_translated_entry(self, history_translated_entry: TranslationEntry):
         unique_id = str(uuid.uuid4())
