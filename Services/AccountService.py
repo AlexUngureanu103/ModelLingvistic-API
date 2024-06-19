@@ -53,6 +53,7 @@ class AccountService:
             self.requestStatus.add_error("error", "Email already exists")
             return self.requestStatus
 
+        user.password = hash_password(user.password)
         self.userRepository.update_user(user_id, user)
         return self.requestStatus
 

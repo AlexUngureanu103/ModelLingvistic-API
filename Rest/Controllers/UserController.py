@@ -1,12 +1,9 @@
-import injector
 from flask import Blueprint, request, jsonify
 
-from DI.ApplicationConfigure import configure
 from Models.User import CreateOrUpdateUser, User
 from Repositories.UserRepository import UserRepository
 from Services.AccountService import AccountService
 from Services.AuthorizationService import token_required
-from config import DB_CONNECTION_STRING
 
 user_controller = Blueprint('user_controller', __name__)
 
@@ -89,7 +86,7 @@ def login():
 
 @user_controller.route('/user/delete', methods=['DELETE'])
 @token_required
-def delete():
+def delete(current_user: str):
     """
     Delete a user
     ---
@@ -112,9 +109,7 @@ def delete():
       200:
         description: Successful operation
     """
-    user_data = request.json
-    user_id = user_data['id']
-    status = accountService.delete_account(user_id)
+    status = accountService.delete_account(current_user)
 
     if status.is_empty():
         return jsonify("User delete successfully")
@@ -124,7 +119,7 @@ def delete():
 
 @user_controller.route('/user/update', methods=['PUT'])
 @token_required
-def update():
+def update(current_user: str):
     """
     Update a user
     ---
@@ -139,9 +134,6 @@ def update():
         schema:
           type: object
           properties:
-            id:
-              type: string
-              id: "1234567890"
             email:
               type: string
               example: "test@example.com"
@@ -153,9 +145,8 @@ def update():
         description: Successful operation
     """
     user_data = request.json
-    user_id = user_data['id']
-    user = User(user_data['id'], user_data['email'], user_data['password'])
-    status = accountService.update_account(user_id, user)
+    user = User(current_user, email=user_data['email'], password=user_data['password'])
+    status = accountService.update_account(current_user, user)
 
     if status.is_empty():
         return jsonify("User Update successfully")
