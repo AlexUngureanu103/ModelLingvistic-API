@@ -33,6 +33,9 @@ def add_translated_entry(current_user: str):
             locale_id:
               type: integer
               example: 0
+            date:
+              type: string
+              example: "19 May 2024"
             source_language:
               type: string
               example: "English"
@@ -56,7 +59,8 @@ def add_translated_entry(current_user: str):
         translated_language=translated_entry_data['target_language'],
         prompt=translated_entry_data['prompt'],
         translated_prompt=translated_entry_data['translation'],
-        locale_id=translated_entry_data['locale_id']
+        locale_id=translated_entry_data['locale_id'],
+        date=translated_entry_data['date']
     )
 
     status = history_translation_entry_service.add_translated_entry(translated_entry)
@@ -87,6 +91,9 @@ def update_translated_entry(current_user: str):
             locale_id:
               type: integer
               example: 0
+            date:
+              type: string
+              example: "19 May 2024"
             remote_id:
               type: string
               example: "1234567890"
@@ -119,7 +126,8 @@ def update_translated_entry(current_user: str):
             prompt=translated_entry_data['prompt'],
             translated_prompt=translated_entry_data['translation'],
             locale_id=translated_entry_data['locale_id'],
-            _id=translated_entry_data['_id']
+            _id=translated_entry_data['_id'],
+            date=translated_entry_data['date']
         )
         translated_entries.append(translated_entry)
 
@@ -146,5 +154,8 @@ def get_all_translated_entries_by_user(current_user: str):
         description: User not found
     """
     translated_entries = history_translation_entry_service.get_all_translated_entries_by_user(current_user)
+
+    for entry in translated_entries:
+        entry.pop('user_id', None)
 
     return jsonify(translated_entries)

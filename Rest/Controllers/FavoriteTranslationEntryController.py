@@ -57,13 +57,17 @@ def add_translated_entry(current_user: str):
         translated_language=translated_entry_data['target_language'],
         prompt=translated_entry_data['prompt'],
         translated_prompt=translated_entry_data['translation'],
-        locale_id=translated_entry_data['locale_id']
+        locale_id=translated_entry_data['locale_id'],
+        date=""
     )
 
     status = favorite_translation_entry_service.add_translated_entry(translated_entry)
 
     if status.is_empty():
-        return jsonify(translated_entry.to_dict())
+        entry = translated_entry.to_dict()
+        entry.pop('date', None)
+
+        return jsonify(entry)
     else:
         return jsonify(status.errors), 400
 
@@ -120,7 +124,8 @@ def update_translated_entry(current_user: str):
             prompt=translated_entry_data['prompt'],
             translated_prompt=translated_entry_data['translation'],
             locale_id=translated_entry_data['locale_id'],
-            _id=translated_entry_data['_id']
+            _id=translated_entry_data['_id'],
+            date=""
         )
         translated_entries.append(translated_entry)
 
@@ -148,4 +153,7 @@ def get_all_translated_entries_by_user(current_user: str):
     """
     translated_entries = favorite_translation_entry_service.get_all_translated_entries_by_user(current_user)
 
+    for entry in translated_entries:
+        entry.pop('user_id', None)
+        entry.pop('date', None)
     return jsonify(translated_entries)
