@@ -132,7 +132,12 @@ def update_translated_entry(current_user: str):
     status = favorite_translation_entry_service.update_translated_entry(current_user, translated_entries)
 
     if status.is_empty():
-        return jsonify("Translated entries updated successfully")
+        translated_entries = favorite_translation_entry_service.get_all_translated_entries_by_user(current_user)
+        for entry in translated_entries:
+            entry.pop('user_id', None)
+            entry.pop('date', None)
+        return jsonify(translated_entries)
+
     else:
         return jsonify(status.errors), 400
 
@@ -157,3 +162,29 @@ def get_all_translated_entries_by_user(current_user: str):
         entry.pop('user_id', None)
         entry.pop('date', None)
     return jsonify(translated_entries)
+
+
+@favorite_translation_entry_controller.route('/favorite-translated-entry/<_id>', methods=['DELETE'])
+@token_required
+def delete_translated_entry(current_user: str, _id: str):
+    """
+    Delete a favorite translated entry
+    ---
+    tags:
+      - Favorite
+    parameters:
+      - name: _id
+        in: path
+        type: string
+        required: true
+        description: The id of the translated entry to delete.
+    responses:
+      200:
+        description: Successful operation
+    """
+    status = favorite_translation_entry_service.delete_translated_entry(current_user, _id)
+
+    if status.is_empty():
+        return jsonify("Translated entry deleted successfully")
+    else:
+        return jsonify(status.errors), 400

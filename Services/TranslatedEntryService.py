@@ -42,3 +42,15 @@ class TranslatedEntryService:
             self.history_translation_entry_repository.add_translated_entry(entry)
 
         return self.request_status
+
+    def delete_translated_entry(self, user_id: str, entry_id: str):
+        self._reset_request_status()
+
+        db_entry = self.history_translation_entry_repository.get_translated_entry_by_id(entry_id)
+
+        if db_entry and db_entry["user_id"] == user_id:
+            self.history_translation_entry_repository.delete_translated_entry(entry_id)
+        else:
+            self.request_status.add_error("error", "Entry not found")
+
+        return self.request_status

@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d797342f-4a08-414e-a725-67a90ba8685a" name="Changes" comment="add fav items">
+    <list default="true" id="d797342f-4a08-414e-a725-67a90ba8685a" name="Changes" comment="endpoints optimization">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/TranslationEntry.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/TranslationEntry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/FavoriteTranslationEntryRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/FavoriteTranslationEntryRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/HistoryTranslationEntryRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/HistoryTranslationEntryRepository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rest/Controllers/FavoriteTranslationEntryController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rest/Controllers/FavoriteTranslationEntryController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rest/Controllers/HistoryTranslationEntryController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rest/Controllers/HistoryTranslationEntryController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/FavoriteTranslationEntryService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/FavoriteTranslationEntryService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/TranslatedEntryService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/TranslatedEntryService.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718782092875</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="endpoints optimization">
+      <option name="closed" value="true" />
+      <created>1718784234027</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718784234027</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,22 +205,12 @@
     <MESSAGE value="Added endpoint for cached translations" />
     <MESSAGE value="fix the auth endpoints" />
     <MESSAGE value="add fav items" />
-    <option name="LAST_COMMIT_MESSAGE" value="add fav items" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Rest/Controllers/HistoryTranslationEntryController.py</url>
-          <line>160</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="endpoints optimization" />
+    <option name="LAST_COMMIT_MESSAGE" value="endpoints optimization" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Model_Lingvistic_API$test.coverage" NAME="test Coverage Results" MODIFIED="1715871648266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Model_Lingvistic_API$restAPI.coverage" NAME="restAPI Coverage Results" MODIFIED="1718783883486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Rest" />
+    <SUITE FILE_PATH="coverage/Model_Lingvistic_API$restAPI.coverage" NAME="restAPI Coverage Results" MODIFIED="1718796242650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Rest" />
     <SUITE FILE_PATH="coverage/ModelLingvistic_API$restAPI.coverage" NAME="restAPI Coverage Results" MODIFIED="1718723781944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Rest" />
   </component>
 </project>

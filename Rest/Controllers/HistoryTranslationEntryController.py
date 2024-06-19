@@ -134,7 +134,11 @@ def update_translated_entry(current_user: str):
     status = history_translation_entry_service.update_translated_entry(current_user, translated_entries)
 
     if status.is_empty():
-        return jsonify("Translated entries updated successfully")
+        translated_entries = history_translation_entry_service.get_all_translated_entries_by_user(current_user)
+
+        for entry in translated_entries:
+            entry.pop('user_id', None)
+        return jsonify(translated_entries)
     else:
         return jsonify(status.errors), 400
 
@@ -159,3 +163,29 @@ def get_all_translated_entries_by_user(current_user: str):
         entry.pop('user_id', None)
 
     return jsonify(translated_entries)
+
+
+@history_translation_entry_controller.route('/history-translated-entry/<entry_id>', methods=['DELETE'])
+@token_required
+def delete_translated_entry(current_user: str, entry_id: str):
+    """
+    Delete a history translated entry
+    ---
+    tags:
+      - History
+    parameters:
+      - name: entry_id
+        in: path
+        required: true
+        type: string
+        description: The ID of the translated entry to delete.
+    responses:
+      200:
+        description: Successful operation
+    """
+    status = history_translation_entry_service.delete_translated_entry(current_user, entry_id)
+
+    if status.is_empty():
+        return jsonify("Translated entry deleted successfully")
+    else:
+        return jsonify(status.errors), 400

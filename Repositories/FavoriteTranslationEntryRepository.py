@@ -28,6 +28,10 @@ class FavoriteTranslationEntryRepository:
         translated_entries = [entry for entry in cursor]
         return translated_entries
 
+    def get_translated_entry_by_id(self, entry_id: str):
+        translated_entry = self.collection.find_one({'_id': entry_id})
+        return translated_entry
+
     def get_translated_entry(self, entry_id: str):
         translated_entry = self.collection.find_one({'_id': entry_id})
         return translated_entry
