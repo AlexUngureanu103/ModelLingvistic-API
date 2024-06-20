@@ -1,7 +1,7 @@
 from Models.RequestStatus import RequestStatus
 from Models.User import User, CreateOrUpdateUser
 from Repositories.UserRepository import UserRepository
-from Services.AuthorizationService import hash_password, verify_password
+from Services.AuthorizationService import hash_password, verify_password, create_token
 
 
 class AccountService:
@@ -24,6 +24,10 @@ class AccountService:
 
         user.password = hash_password(user.password)
         self.userRepository.create_user(user)
+
+        token = create_token(user.id)
+
+        self.requestStatus.add_data("token", token)
         return self.requestStatus
 
     def delete_account(self, user_id):
@@ -35,7 +39,7 @@ class AccountService:
         self.userRepository.delete_user(user_id)
         return self.requestStatus
 
-    def update_account(self, user_id, user: User):
+    def update_account(self, user_id, user: CreateOrUpdateUser):
         self._reset_request_status()
         if not self.userRepository.get_user(user_id):
             self.requestStatus.add_error("error", "User does not exist")
@@ -49,6 +53,7 @@ class AccountService:
             self.requestStatus.add_error("error", "Email already exists")
             return self.requestStatus
 
+        user.password = hash_password(user.password)
         self.userRepository.update_user(user_id, user)
         return self.requestStatus
 
@@ -60,12 +65,15 @@ class AccountService:
 
         user_from_db = self.userRepository.get_user_by_email(user.email)
 
-        if not user:
+        if user_from_db is None:
             self.requestStatus.add_error("error", "User does not exist")
             return self.requestStatus
 
         password_ok = verify_password(user_from_db["password"], user.password)
         if password_ok:
+            token = create_token(user_from_db["_id"])
+
+            self.requestStatus.add_data("token", token)
             return self.requestStatus
 
         self.requestStatus.add_error("error", "Password is incorrect")

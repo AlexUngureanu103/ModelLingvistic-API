@@ -1,14 +1,14 @@
 import uuid
 from pymongo import MongoClient
 from Models import User
-from config import Environment, AccountCollection
+from config import Environment, AccountCollection, DB_CONNECTION_STRING
 
 
 class UserRepository:
-    def __init__(self, connection_string):
-        self.client = MongoClient(connection_string)
-        self.db = self.client[Environment]  # replace with your database name
-        self.collection = self.db[AccountCollection]  # replace with your collection name
+    def __init__(self):
+        self.client = MongoClient(DB_CONNECTION_STRING)
+        self.db = self.client[Environment]
+        self.collection = self.db[AccountCollection]
 
     def create_user(self, user: User):
         unique_id = str(uuid.uuid4())

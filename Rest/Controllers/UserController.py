@@ -1,13 +1,13 @@
 from flask import Blueprint, request, jsonify
 
-# from DI.ApplicationConfigure import injector
 from Models.User import CreateOrUpdateUser, User
 from Repositories.UserRepository import UserRepository
 from Services.AccountService import AccountService
-from config import DB_CONNECTION_STRING
+from Services.AuthorizationService import token_required
 
 user_controller = Blueprint('user_controller', __name__)
-user_repository = UserRepository(DB_CONNECTION_STRING)
+
+user_repository = UserRepository()
 accountService = AccountService(user_repository)
 
 
@@ -43,7 +43,7 @@ def register():
     status = accountService.register(user)
 
     if status.is_empty():
-        return jsonify("User registered successfully")
+        return jsonify(status.data)
     else:
         return jsonify(status.errors), 400
 
@@ -79,13 +79,14 @@ def login():
     status = accountService.login(user)
 
     if status.is_empty():
-        return jsonify("User Login successfully")
+        return jsonify(status.data)
     else:
         return jsonify(status.errors), 401
 
 
 @user_controller.route('/user/delete', methods=['DELETE'])
-def delete():
+@token_required
+def delete(current_user: str):
     """
     Delete a user
     ---
@@ -108,9 +109,7 @@ def delete():
       200:
         description: Successful operation
     """
-    user_data = request.json
-    user_id = user_data['id']
-    status = accountService.delete_account(user_id)
+    status = accountService.delete_account(current_user)
 
     if status.is_empty():
         return jsonify("User delete successfully")
@@ -119,7 +118,8 @@ def delete():
 
 
 @user_controller.route('/user/update', methods=['PUT'])
-def update():
+@token_required
+def update(current_user: str):
     """
     Update a user
     ---
@@ -134,9 +134,6 @@ def update():
         schema:
           type: object
           properties:
-            id:
-              type: string
-              id: "1234567890"
             email:
               type: string
               example: "test@example.com"
@@ -148,9 +145,8 @@ def update():
         description: Successful operation
     """
     user_data = request.json
-    user_id = user_data['id']
-    user = User(user_data['id'], user_data['email'], user_data['password'])
-    status = accountService.update_account(user_id, user)
+    user = User(current_user, email=user_data['email'], password=user_data['password'])
+    status = accountService.update_account(current_user, user)
 
     if status.is_empty():
         return jsonify("User Update successfully")
